@@ -1,19 +1,19 @@
 :root {
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  --background: #f7f8f8;
+  --forground: #fff;
+  --btn-color: #55a3f0;
+
+  --primary: #3a8bed;
+  --greeen: #4ade80;
+  --red: #f43f5e;
+  --input: #f2f2f2;
+  --border: #e4e4e4;
 }
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+body {
+  font-family: "Vazirmatn";
 }

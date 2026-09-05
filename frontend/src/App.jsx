@@ -1,12 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import { Routes } from "react-router-dom";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
+import Router from "./router/Router";
+import AuthProvider from "./context/authContext";
 
 function App() {
   return (
     <>
-      <h1>AdminPanel</h1>
-      <Routes></Routes>
+      <AuthProvider>
+        <Toaster position="top-right" />
+        <Router />
+      </AuthProvider>
+      <ReactQueryDevtools />
     </>
   );
 }
