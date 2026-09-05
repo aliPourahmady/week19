@@ -62,9 +62,7 @@ function RegisterPage() {
               placeholder="نام کاربری"
               {...register("username")}
             />
-            {errors.username && (
-              <p style={{ color: "red" }}>{errors.username.message}</p>
-            )}
+            {errors.username && <p>{errors.username.message}</p>}
           </div>
           <div className={styles.password}>
             <input
@@ -76,9 +74,7 @@ function RegisterPage() {
               {isVisible ? <FaRegEye /> : <FaRegEyeSlash />}
             </div>
 
-            {errors.password && (
-              <p style={{ color: "red" }}>{errors.password.message}</p>
-            )}
+            {errors.password && <p>{errors.password.message}</p>}
           </div>
           <div>
             <input
@@ -86,9 +82,7 @@ function RegisterPage() {
               placeholder="تکرار رمز عبور"
               {...register("confirmPassword")}
             />
-            {errors.confirmPassword && (
-              <p style={{ color: "red" }}>{errors.confirmPassword.message}</p>
-            )}
+            {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
             {watch("password") && (
               <div className={styles.checkList}>
                 <PasswordChecklist
@@ -115,7 +109,7 @@ function RegisterPage() {
               </div>
             )}
           </div>
-          {error && <p style={{ color: "red" }}>{error.message}</p>}
+          {error && <p>{error.message}</p>}
           <button type="submit" disabled={isLoading || !isPasswordValid}>
             {isLoading ? "درحال ثبت نام..." : "ثبت نام"}
           </button>

@@ -8,6 +8,8 @@ import { useAuth } from "../context/authContext";
 import { loginSchema } from "../schemas/authSchema";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import styles from "./LoginPage.module.css";
+import logo from "../assets/Union.svg";
 
 function LoginPage() {
   const { setAuth } = useAuth();
@@ -39,33 +41,38 @@ function LoginPage() {
     });
   };
   return (
-    <div>
-      <h2>فرم ورود</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="نام کاربری" {...register("username")} />
-        {errors.username && (
-          <p style={{ color: "red" }}>{errors.username.message}</p>
-        )}
-        <div>
-          <input
-            type={isVisible ? "text" : "password"}
-            placeholder="رمز عبور"
-            {...register("password")}
-          />
-          <div onClick={() => setIsVisible(!isVisible)}>
-            {isVisible ? <FaRegEye /> : <FaRegEyeSlash />}
-          </div>
-          {errors.password && (
-            <p style={{ color: "red" }}>{errors.password.message}</p>
-          )}
+    <div className={styles.container}>
+      <div className={styles.containerBox}>
+        <div className={styles.header}>
+          <img src={logo} alt="logo" />
+          <h2>فرم ورود</h2>
         </div>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+          <input
+            type="text"
+            placeholder="نام کاربری"
+            {...register("username")}
+          />
+          {errors.username && <p>{errors.username.message}</p>}
+          <div className={styles.password}>
+            <input
+              type={isVisible ? "text" : "password"}
+              placeholder="رمز عبور"
+              {...register("password")}
+            />
+            <div onClick={() => setIsVisible(!isVisible)}>
+              {isVisible ? <FaRegEye /> : <FaRegEyeSlash />}
+            </div>
+            {errors.password && <p>{errors.password.message}</p>}
+          </div>
 
-        {error && <p style={{ color: "red" }}>Invalid username or password.</p>}
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "درحال ورود..." : "ورود"}
-        </button>
-      </form>
-      <Link to="/register">حساب کاربری ندارید؟</Link>
+          {error && <p>Invalid username or password.</p>}
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "درحال ورود..." : "ورود"}
+          </button>
+          <Link to="/register">ایحاد حساب کاربری!</Link>
+        </form>
+      </div>
     </div>
   );
 }

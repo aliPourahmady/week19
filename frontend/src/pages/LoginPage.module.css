@@ -5,7 +5,9 @@
   align-items: center;
   background-color: var(--background);
 }
+
 .containerBox {
+  padding: 40px;
   background-color: var(--forground);
   display: flex;
   flex-direction: column;
@@ -13,7 +15,6 @@
   align-items: center;
   border-radius: 40px;
   border: 1px solid var(--border);
-  padding: 30px;
 }
 .header {
   display: flex;
@@ -23,7 +24,6 @@
   gap: 16px;
   padding-bottom: 63px;
 }
-
 .containerBox h2 {
   font-size: 24px;
   font-weight: 500;
@@ -37,12 +37,10 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
 .form input {
-  display: flex;
-  flex-direction: column;
   width: 400px;
   height: 53px;
   border: none;
@@ -51,24 +49,24 @@
   border-radius: 15px;
   font-family: "vazirmatn";
 }
-
-.form p{
-  color: var(--red);
-  padding: 8px;
-}
 .form input:focus-visible {
   outline: 2px var(--primary) solid;
 }
-.form button:disabled{
+.form button:disabled {
   opacity: 0.5;
 }
-
-
+.form p{
+  color: var(--red);
+  padding: 0 8px;
+}
 
 .password {
   position: relative;
   display: flex;
   flex-direction: column;
+}
+.password p{
+  padding: 10px;
 }
 
 .password div {
@@ -80,6 +78,7 @@
 }
 .form button {
   font-family: "vazirmatn";
+  margin-top: 25px;
   width: 400px;
   height: 53px;
   background-color: var(--btn-color);
@@ -88,51 +87,11 @@
   font-weight: 600;
   padding: 10px;
   border-radius: 15px;
-  transition: all 0.3s ease-in-out;
 }
-
-
-.form button:hover {
-  background-color: var(--primary);
-}
-
 .containerBox a {
   text-decoration: none;
   color: var(--primary);
   font-size: 16px;
   font-weight: 400;
-  margin-top: 19px;
-}
-
-.validation {
-  max-height: 300px;
-  font-size: 18px;
-  background-color: var(--background);
-  border-radius: 15px;
-  padding: 12px 20px;
-  list-style: none;
-  margin: 5px 0 0 0;
-  width: 400px;
-  box-sizing: border-box;
-  margin-top: 10px !important;
-  padding: 5px !important;
-}
-
-.validation li {
-  font-size: 14px;
-  padding: 3px 8px !important;
-}
-
-.validation li .undefine {
-  color: #22c55e !important;
-}
-
-.validation li.invalid svg {
-  color: #ef4444 !important;
-}
-
-.validation li svg {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
+  margin: 0 6px;
 }
