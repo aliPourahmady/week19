@@ -11,11 +11,11 @@ function Router() {
   return (
     <Routes>
       <Route element={<PublicRoute />}>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
       </Route>
       <Route element={<PrivateRoute />}>
-        <Route path="/admin" element={<AdminPage />} />
+      <Route path="/admin" element={<AdminPage />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

@@ -34,6 +34,14 @@
   height: 84px;
   margin-top: 51px;
 }
+
+.containerBox a {
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 19px;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -61,8 +69,27 @@
 }
 .form button:disabled{
   opacity: 0.5;
+  cursor: not-allowed;
 }
 
+.form button {
+  font-family: "vazirmatn";
+  width: 400px;
+  height: 53px;
+  background-color: var(--btn-color);
+  color: var(--forground);
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.form button:hover {
+  background-color: var(--primary);
+}
 
 
 .password {
@@ -74,34 +101,9 @@
 .password div {
   position: absolute;
   left: 12px;
-  top: 25%;
+  top: 40%;
   cursor: pointer;
   color: #333333be;
-}
-.form button {
-  font-family: "vazirmatn";
-  width: 400px;
-  height: 53px;
-  background-color: var(--btn-color);
-  color: var(--forground);
-  font-size: 20px;
-  font-weight: 600;
-  padding: 10px;
-  border-radius: 15px;
-  transition: all 0.3s ease-in-out;
-}
-
-
-.form button:hover {
-  background-color: var(--primary);
-}
-
-.containerBox a {
-  text-decoration: none;
-  color: var(--primary);
-  font-size: 16px;
-  font-weight: 400;
-  margin-top: 19px;
 }
 
 .validation {

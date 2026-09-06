@@ -1,18 +1,17 @@
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import { useLogin } from "../hooks/mutations";
-import { useAuth } from "../context/authContext";
 import { loginSchema } from "../schemas/authSchema";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import styles from "./LoginPage.module.css";
 import logo from "../assets/Union.svg";
+import { setToken } from "../service/cookie";
 
 function LoginPage() {
-  const { setAuth } = useAuth();
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
   const {
@@ -30,12 +29,14 @@ function LoginPage() {
   const onSubmit = (formData) => {
     mutate(formData, {
       onSuccess: (response) => {
-        setAuth(response);
+        const token = response.token;
+        console.log(token);
+        setToken(token);
         toast.success("Login successful!");
         reset();
         navigate("/admin");
       },
-      onError: (error) => {
+      onError: () => {
         throw new Error("Invalid username or password.");
       },
     });

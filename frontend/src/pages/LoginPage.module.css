@@ -16,6 +16,17 @@
   border-radius: 40px;
   border: 1px solid var(--border);
 }
+.containerBox a {
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
 .header {
   display: flex;
   flex-direction: column;
@@ -52,30 +63,6 @@
 .form input:focus-visible {
   outline: 2px var(--primary) solid;
 }
-.form button:disabled {
-  opacity: 0.5;
-}
-.form p{
-  color: var(--red);
-  padding: 0 8px;
-}
-
-.password {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-.password p{
-  padding: 10px;
-}
-
-.password div {
-  position: absolute;
-  left: 12px;
-  top: 25%;
-  cursor: pointer;
-  color: #333333be;
-}
 .form button {
   font-family: "vazirmatn";
   margin-top: 25px;
@@ -87,11 +74,35 @@
   font-weight: 600;
   padding: 10px;
   border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+  border: none;
 }
-.containerBox a {
-  text-decoration: none;
-  color: var(--primary);
-  font-size: 16px;
-  font-weight: 400;
-  margin: 0 6px;
+.form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form button:hover {
+  background-color: var(--primary);
+}
+.form p {
+  color: var(--red);
+  padding: 0 8px;
+}
+
+.password {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.password p {
+  padding: 10px;
+}
+
+.password div {
+  position: absolute;
+  left: 12px;
+  top: 40%;
+  cursor: pointer;
+  color: #333333be;
 }

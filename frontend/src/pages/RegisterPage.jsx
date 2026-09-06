@@ -5,12 +5,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordChecklist from "react-password-checklist";
 import toast from "react-hot-toast";
 import { FaCheck, FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-import { IoClose, IoEyeOutline } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 
-import { useRegister } from "../hooks/mutations";
+import { useLogin, useRegister } from "../hooks/mutations";
 import { registerSchema } from "../schemas/authSchema";
 import logo from "../assets/Union.svg";
 import styles from "./RegisterPage.module.css";
+import { setToken } from "../service/cookie";
 
 function RegisterPage() {
   const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -27,26 +28,55 @@ function RegisterPage() {
     defaultValues: { username: "", password: "", confirmPassword: "" },
   });
 
-  const { mutate, isLoading, error } = useRegister();
+  const {
+    mutate: registerMutate,
+    isLoading: isRegistering,
+    error: registerError,
+  } = useRegister();
+  const {
+    mutate: loginMutate,
+    isLoading: isLoggingIn,
+    error: loginError,
+  } = useLogin();
 
   const onSubmit = (formData) => {
     const { confirmPassword, ...registrationData } = formData;
 
-    mutate(registrationData, {
+    registerMutate(registrationData, {
       onSuccess: () => {
-        toast.success("Account created successfully! Redirecting to Login....");
-        setTimeout(() => {
-          navigate("/", { replace: true });
-        }, 1500);
-        reset();
-        setIsPasswordValid(false);
+        loginMutate(
+          {
+            username: registrationData.username,
+            password: registrationData.password,
+          },
+          {
+            onSuccess: (loginResponse) => {
+              const token = loginResponse.token;
+              if (token) {
+                setToken(token);
+                navigate("/admin", { replace: true });
+                reset();
+                setIsPasswordValid(false);
+                toast.success("ثبت نام با موفقیت انجام شد ");
+              } else {
+                toast.error("token doesnt found");
+              }
+            },
+            onError: (err) => {
+              toast.error("ثبت نام با شکست مواجه شد لطفا دوباره ثبت کنید ");
+              navigate("/");
+            },
+          },
+        );
       },
       onError: (err) => {
         console.error("Registration faild:", err);
-        toast.error(err.message || "Registration failed");
+        toast.error(err.message || "ثبت نام ناموفق بود");
       },
     });
   };
+
+  const isLoading = isRegistering || isLoggingIn;
 
   return (
     <div className={styles.container}>
@@ -109,7 +139,9 @@ function RegisterPage() {
               </div>
             )}
           </div>
-          {error && <p>{error.message}</p>}
+          {(registerError || loginError) && (
+            <p>{registerError?.message || loginError?.message}</p>
+          )}
           <button type="submit" disabled={isLoading || !isPasswordValid}>
             {isLoading ? "درحال ثبت نام..." : "ثبت نام"}
           </button>
