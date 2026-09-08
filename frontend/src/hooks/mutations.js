@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "../service/api";
 
 const useRegister = () => {
@@ -21,4 +21,18 @@ const useLogin = () => {
   });
 };
 
-export { useRegister, useLogin };
+const useAddProducts = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["addProducts"],
+    mutationFn: async (data) => {
+      const response = await api.post("/products", data);
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+};
+
+export { useRegister, useLogin, useAddProducts };

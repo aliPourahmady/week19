@@ -1,8 +1,11 @@
 import { useProducts } from "../hooks/queries";
 import trash from "../assets/trash.svg";
 import edit from "../assets/edit.svg";
+import { useState } from "react";
+import AddProductsModal from "../components/AddProductsModal";
 
 function AdminPage() {
+  const [showModal, setShowModal] = useState(false);
   const { error, data, isLoading } = useProducts();
 
   if (isLoading) return <p>در حال بارگذاری...</p>;
@@ -12,6 +15,7 @@ function AdminPage() {
   if (!data || data.length === 0) return <p>محصولی یافت نشد.</p>;
   return (
     <div>
+      {showModal && <AddProductsModal setShowModal={setShowModal} />}
       <header>
         <input type="text" placeholder="جستجوی کالا" />
         <img src="" alt="" />
@@ -21,7 +25,7 @@ function AdminPage() {
       <main>
         <div>
           <h2>مدیریت کالا</h2>
-          <button>افزودن محصول</button>
+          <button onClick={() => setShowModal(true)}>افزودن محصول</button>
         </div>
         <table>
           <thead>
@@ -41,8 +45,8 @@ function AdminPage() {
                 <td>{item.price} هزار تومان</td>
                 <td>{item.id}</td>
                 <td>
-                <img src={edit} alt="edit" />
-                <img src={trash} alt="trash" />
+                  <img src={edit} alt="edit" />
+                  <img src={trash} alt="trash" />
                 </td>
               </tr>
             ))}
