@@ -30,14 +30,13 @@ function LoginPage() {
     mutate(formData, {
       onSuccess: (response) => {
         const token = response.token;
-        console.log(token);
         setToken(token);
-        toast.success("Login successful!");
+        toast.success("با موفقیت به حساب خود وارد شدید.");
         reset();
         navigate("/admin");
       },
       onError: () => {
-        throw new Error("Invalid username or password.");
+        throw new Error("نام کاربری یا پسوورد شما اشتباه است.");
       },
     });
   };

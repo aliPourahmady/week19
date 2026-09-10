@@ -1,58 +1,37 @@
-import { useProducts } from "../hooks/queries";
-import trash from "../assets/trash.svg";
-import edit from "../assets/edit.svg";
-import { useState } from "react";
-import AddProductsModal from "../components/AddProductsModal";
+import ProductsTable from "../components/ProductsTable";
+import { TbLogout2 } from "react-icons/tb";
+
+import styles from "./AdminPage.module.css";
+import { removeToken } from "../service/cookie";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function AdminPage() {
-  const [showModal, setShowModal] = useState(false);
-  const { error, data, isLoading } = useProducts();
+  const navigate = useNavigate();
 
-  if (isLoading) return <p>در حال بارگذاری...</p>;
-
-  if (error) return <p>خطا در دریافت اطلاعات: {error.message}</p>;
-
-  if (!data || data.length === 0) return <p>محصولی یافت نشد.</p>;
+  const logoutHandler = () => {
+    removeToken();
+    toast.success("با موفقیت از حساب خود خارج شدید");
+    navigate("/", { replace: true });
+  };
   return (
-    <div>
-      {showModal && <AddProductsModal setShowModal={setShowModal} />}
-      <header>
-        <input type="text" placeholder="جستجوی کالا" />
-        <img src="" alt="" />
-        <h2>میلاد عظمی</h2>
-        <p>مدیر</p>
-      </header>
-      <main>
-        <div>
-          <h2>مدیریت کالا</h2>
-          <button onClick={() => setShowModal(true)}>افزودن محصول</button>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>نام کاربری</th>
-              <th>موجودی</th>
-              <th>قیمت</th>
-              <th>شناسه کالا</th>
-              <th>عملیات</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.data.map((item) => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.quantity}</td>
-                <td>{item.price} هزار تومان</td>
-                <td>{item.id}</td>
-                <td>
-                  <img src={edit} alt="edit" />
-                  <img src={trash} alt="trash" />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </main>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <header>
+          <input type="text" placeholder="جستجوی کالا" />
+          <div className={styles.user}>
+            <div style={styles.accont}>
+              <h2>میلاد عظمی</h2>
+              <p>مدیر</p>
+            </div>
+            <hr />
+            <TbLogout2 className={styles.logout} onClick={logoutHandler} />
+          </div>
+        </header>
+        <main>
+          <ProductsTable />
+        </main>
+      </div>
     </div>
   );
 }

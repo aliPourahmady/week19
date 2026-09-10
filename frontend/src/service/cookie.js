@@ -4,11 +4,16 @@ import { FaTruckMedical } from "react-icons/fa6";
 const TOKEN_KEY = "authToken";
 
 const setToken = (token) => {
-  Cookies.set(TOKEN_KEY, token, { expires: 7, path: "/" });
+  Cookies.set(TOKEN_KEY, token, { expires: 1 / 24, path: "/" });
 };
 
 const getToken = () => {
-  return Cookies.get(TOKEN_KEY);
+  const token = Cookies.get(TOKEN_KEY);
+  if (!token) {
+    removeToken();
+    window.location.href = "/";
+  }
+  return token;
 };
 
 const removeToken = () => {

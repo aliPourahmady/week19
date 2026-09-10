@@ -59,7 +59,7 @@ function RegisterPage() {
                 setIsPasswordValid(false);
                 toast.success("ثبت نام با موفقیت انجام شد ");
               } else {
-                toast.error("token doesnt found");
+                toast.error("توکن پیدا نشد ");
               }
             },
             onError: (err) => {

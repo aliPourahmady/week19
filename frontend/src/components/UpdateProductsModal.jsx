@@ -1,14 +1,15 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { useUpdateProducts } from "../hooks/mutations";
 import { useForm } from "react-hook-form";
-import { useAddProducts } from "../hooks/mutations";
-import { addProductsSchema } from "../schemas/productsSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { addProductsSchema } from "../schemas/productsSchema";
 import toast from "react-hot-toast";
 
-import styles from "./AddProductsModal.module.css";
+import styles from "./UpdateProductsModal.module.css";
 
-function AddProductsModal({ setShowModal }) {
-  const { mutate, error, isLoading } = useAddProducts();
+function UpdateProductsModal({ setShowModal, product }) {
+  const { id, name, price, quantity } = product;
+  const { mutate, error, isLoading } = useUpdateProducts(id);
   const {
     register,
     handleSubmit,
@@ -16,7 +17,11 @@ function AddProductsModal({ setShowModal }) {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(addProductsSchema),
-    defaultValues: { name: "", price: "", quantity: "" },
+    defaultValues: {
+      name,
+      price,
+      quantity,
+    },
   });
 
   useEffect(() => {
@@ -30,18 +35,18 @@ function AddProductsModal({ setShowModal }) {
   const onSubmit = (formData) => {
     const payload = {
       name: formData.name,
-      price: Number(formData.price),
-      quantity: Number(formData.quantity),
+      price: formData.price,
+      quantity: formData.quantity,
     };
-    console.log(payload);
+
     mutate(payload, {
       onSuccess: () => {
         setShowModal(false);
-        toast.success("محصول با موفقیت ثبت شد ");
+        toast.success("محصول با موفقیت ویرایش شد");
         reset();
       },
-      onError: (err) => {
-        toast.error("خطا در افزودن محصول ", err);
+      onError: (er) => {
+        toast.error("خطا در ویرایش محصول", er);
       },
     });
   };
@@ -54,7 +59,7 @@ function AddProductsModal({ setShowModal }) {
       }}
     >
       <div className={styles.content}>
-        <p>ایجاد محصول جدید </p>
+        <p>ویرایش اطلاعات</p>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <div className={styles.input}>
             <label htmlFor="name">نام کالا</label>
@@ -86,10 +91,10 @@ function AddProductsModal({ setShowModal }) {
             />
             {errors.price && <p>{errors.price.message}</p>}
           </div>
-          {error && <p className={styles.error}>{error.message}</p>}
+            {error && <p className={styles.error}>{error.message}</p>}
           <div className={styles.btn}>
             <button type="submit" disabled={isLoading}>
-              {isLoading ? "درحال ایجاد" : "ایجاد"}
+              {isLoading ? "درحال ویرایش...." : "ثبت اطلاعات جدید"}
             </button>
             <button type="button" onClick={() => setShowModal(false)}>
               انصراف
@@ -101,4 +106,4 @@ function AddProductsModal({ setShowModal }) {
   );
 }
 
-export default AddProductsModal;
+export default UpdateProductsModal;

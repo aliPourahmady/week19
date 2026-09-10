@@ -34,5 +34,43 @@ const useAddProducts = () => {
     },
   });
 };
+const useUpdateProducts = (id) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["updataProducts"],
+    mutationFn: (payload) => api.put(`/products/${id}`, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+};
 
-export { useRegister, useLogin, useAddProducts };
+const useDeleteProducts = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["deleteProducts"],
+    mutationFn: (id) => api.delete(`/products/${id}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+};
+const useSelectedDeleteHandler = (ids) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["selectedDelete"],
+    mutationFn: (payload) => api.delete(`/products`, { data: payload }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+};
+
+export {
+  useRegister,
+  useLogin,
+  useAddProducts,
+  useUpdateProducts,
+  useDeleteProducts,
+  useSelectedDeleteHandler,
+};
