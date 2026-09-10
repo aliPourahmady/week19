@@ -11,6 +11,7 @@
 .headerContent p {
   font-size: 24px;
   font-weight: 400;
+  margin-right: 6px;
 }
 .headerContent img {
   width: 30px;

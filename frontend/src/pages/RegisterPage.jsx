@@ -71,7 +71,6 @@ function RegisterPage() {
       },
       onError: (err) => {
         console.error("Registration faild:", err);
-        toast.error(err.message || "ثبت نام ناموفق بود");
       },
     });
   };
@@ -140,7 +139,10 @@ function RegisterPage() {
             )}
           </div>
           {(registerError || loginError) && (
-            <p>{registerError?.message || loginError?.message}</p>
+            <p>
+              {registerError?.response.data.message ||
+                loginError?.response.data.message}
+            </p>
           )}
           <button type="submit" disabled={isLoading || !isPasswordValid}>
             {isLoading ? "درحال ثبت نام..." : "ثبت نام"}

@@ -9,10 +9,7 @@ const setToken = (token) => {
 
 const getToken = () => {
   const token = Cookies.get(TOKEN_KEY);
-  if (!token) {
-    removeToken();
-    window.location.href = "/";
-  }
+  if (!token) removeToken();
   return token;
 };
 

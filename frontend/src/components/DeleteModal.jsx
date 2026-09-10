@@ -43,7 +43,6 @@ function DeleteModal({
       deleteMutate(product.id, { onSuccess, onError });
     }
   };
-  console.log(deleteSelected);
 
   return (
     <div
