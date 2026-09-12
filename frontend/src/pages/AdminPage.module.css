@@ -1,10 +1,11 @@
-.container{
-    background-color: var(--background);
-    height: 100vh;
-    background-size: cover;
+.container {
+  background-color: var(--background);
+  min-height: 100vh;
+  background-size: cover;
+  color: var(--text);
 }
-.content{
-    margin: 0 150px;
+.content {
+  margin: 0 150px;
 }
 header {
   display: flex;
@@ -15,11 +16,15 @@ header {
   display: flex;
   gap: 10px;
   align-items: center;
-  
 }
 
-.logout{
-    font-size: 2rem;
-    cursor: pointer;
-
+.logout {
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--red);
+  opacity: 0.8;
+  transition: all 0.1s ease-in;
+}
+.logout:hover {
+  opacity: 1;
 }

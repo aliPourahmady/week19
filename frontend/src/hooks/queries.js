@@ -1,12 +1,30 @@
-import { useQueries, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import api from "../service/api";
 
-const useProducts = () => {
+const useProducts = ({
+  page = 1,
+  limit = 10,
+  name,
+  minPrice,
+  maxPrice,
+} = {}) => {
   return useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", { page, limit, name, minPrice, maxPrice }],
     queryFn: async () => {
-      const res = await api.get("/products");
-      return res.data;
+      const params = { page, limit };
+      if (name) params.name = name;
+      if (minPrice) params.minPrice = minPrice;
+      if (maxPrice) params.maxPrice = maxPrice;
+
+      try {
+        const res = await api.get("/products", { params });
+        return res.data;
+      } catch (err) {
+        if (err.response?.status === 400) {
+          return { data: [], totalProducts: 0 };
+        }
+        throw err;
+      }
     },
   });
 };

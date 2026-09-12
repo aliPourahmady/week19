@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 import { getToken, removeToken } from "./cookie";
 
 const api = axios.create({ baseURL: "http://localhost:3000" });

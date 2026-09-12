@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   background-color: var(--background);
+  color: var(--text);
 }
 
 .containerBox {
@@ -59,6 +60,7 @@
   padding: 22px 15px;
   border-radius: 15px;
   font-family: "vazirmatn";
+  color: var(--text);
 }
 .form input:focus-visible {
   outline: 2px var(--primary) solid;

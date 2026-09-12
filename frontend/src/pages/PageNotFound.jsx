@@ -1,4 +1,3 @@
-import React from "react";
 import myVideo from "../assets/6P0vigk7010KkrSo0u.webm";
 
 function PageNotFound() {

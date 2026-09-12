@@ -65,6 +65,11 @@
   font-size: 15px;
   font-weight: 200;
 }
+
+.form input:focus-visible {
+  outline: 2px var(--primary) solid;
+}
+
 .form .btn {
   display: flex;
   justify-content: space-between;

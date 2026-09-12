@@ -41,6 +41,19 @@
   background-color: var(--primary);
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  width: 100%;
+}
+
+.filtersContainer {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
 .tableContainer {
   border-radius: 30px;
   border: 1px solid var(--border);
@@ -61,6 +74,12 @@
   padding: 25px;
   text-align: center;
 }
+.empty {
+  text-align: center;
+  font-weight: 600;
+  color: var(--primary);
+}
+
 .table tbody {
   background-color: var(--forground);
 }

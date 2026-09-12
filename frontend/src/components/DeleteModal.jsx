@@ -38,7 +38,8 @@ function DeleteModal({
     };
 
     if (!product && deleteSelected.length > 0) {
-      selectedMutate({ ids: deleteSelected }, { onSuccess, onError });
+      const ids = deleteSelected.map((p) => p.id);
+      selectedMutate({ ids }, { onSuccess, onError });
     } else {
       deleteMutate(product.id, { onSuccess, onError });
     }

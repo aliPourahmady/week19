@@ -5,6 +5,8 @@ import styles from "./AdminPage.module.css";
 import { removeToken } from "../service/cookie";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import SearchBox from "../components/SearchBox";
+import ThemeToggle from "../components/ThemeToggle";
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -18,13 +20,13 @@ function AdminPage() {
     <div className={styles.container}>
       <div className={styles.content}>
         <header>
-          <input type="text" placeholder="جستجوی کالا" />
+          <SearchBox />
           <div className={styles.user}>
             <div style={styles.accont}>
               <h2>میلاد عظمی</h2>
               <p>مدیر</p>
             </div>
-            <hr />
+            <ThemeToggle />
             <TbLogout2 className={styles.logout} onClick={logoutHandler} />
           </div>
         </header>

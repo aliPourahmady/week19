@@ -58,6 +58,10 @@
 .form div input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.form input:focus-visible {
+  outline: 2px var(--primary) solid;
+}
 .form .input p {
   margin-top: 10px;
   color: var(--red);

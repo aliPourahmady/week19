@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   background-color: var(--background);
+  color: var(--text);
 }
 .containerBox {
   background-color: var(--forground);
@@ -58,6 +59,7 @@
   padding: 22px 15px;
   border-radius: 15px;
   font-family: "vazirmatn";
+  color: var(--text);
 }
 
 .form p{

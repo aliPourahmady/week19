@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useAddProducts } from "../hooks/mutations";
 import { addProductsSchema } from "../schemas/productsSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,12 +7,20 @@ import toast from "react-hot-toast";
 
 import styles from "./AddProductsModal.module.css";
 
+const unformat = (value) => value.replace(/[^\d]/g, "");
+const formatNumber = (value) => {
+  const raw = unformat(String(value ?? ""));
+  if (!raw) return "";
+  return Number(raw).toLocaleString("en-US");
+};
+
 function AddProductsModal({ setShowModal }) {
   const { mutate, error, isLoading } = useAddProducts();
   const {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(addProductsSchema),
@@ -78,14 +86,24 @@ function AddProductsModal({ setShowModal }) {
           </div>
           <div className={styles.input}>
             <label htmlFor="price">قیمت</label>
-            <input
-              type="number"
-              id="price"
-              placeholder="قیمت"
-              {...register("price")}
+            <Controller
+              name="price"
+              control={control}
+              render={({ field: { onChange, value, ...field } }) => (
+                <input
+                  {...field}
+                  type="text"
+                  inputMode="numeric"
+                  id="price"
+                  placeholder="قیمت"
+                  value={formatNumber(value)}
+                  onChange={(e) => onChange(unformat(e.target.value))}
+                />
+              )}
             />
             {errors.price && <p>{errors.price.message}</p>}
           </div>
+
           {error && <p className={styles.error}>{error.message}</p>}
           <div className={styles.btn}>
             <button type="submit" disabled={isLoading}>

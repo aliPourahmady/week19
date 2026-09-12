@@ -22,7 +22,7 @@ function ProductsItem({
     <>
       <td>{product.name}</td>
       <td>{product.quantity}</td>
-      <td>{product.price} هزار تومان</td>
+      <td>{product.price.toLocaleString("fa-IR")} تومان</td>
       <td>{product.id}</td>
       <td className={styles.btn}>
         <img

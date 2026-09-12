@@ -1,5 +1,4 @@
 import Cookies from "js-cookie";
-import { FaTruckMedical } from "react-icons/fa6";
 
 const TOKEN_KEY = "authToken";
 
