@@ -12,6 +12,7 @@ import { registerSchema } from "../schemas/authSchema";
 import logo from "../assets/Union.svg";
 import styles from "./RegisterPage.module.css";
 import { setToken } from "../service/cookie";
+import ThemeToggle from "../components/ThemeToggle";
 
 function RegisterPage() {
   const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -79,6 +80,9 @@ function RegisterPage() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.theme}>
+        <ThemeToggle />
+      </div>
       <div className={styles.containerBox}>
         <div className={styles.header}>
           <img src={logo} alt="logo" />

@@ -6,6 +6,12 @@
   background-color: var(--background);
   color: var(--text);
 }
+.theme {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+}
+
 .containerBox {
   background-color: var(--forground);
   display: flex;
@@ -62,14 +68,14 @@
   color: var(--text);
 }
 
-.form p{
+.form p {
   color: var(--red);
   padding: 8px;
 }
 .form input:focus-visible {
   outline: 2px var(--primary) solid;
 }
-.form button:disabled{
+.form button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -88,11 +94,9 @@
   transition: all 0.3s ease-in-out;
 }
 
-
 .form button:hover {
   background-color: var(--primary);
 }
-
 
 .password {
   position: relative;

@@ -49,8 +49,8 @@ function PriceRange({
         />
       </div>
       <div className={styles.value}>
-        <span>از: {range[0].toLocaleString()}</span>
         <span>تا: {range[1].toLocaleString()}</span>
+        <span>از: {range[0].toLocaleString()}</span>
       </div>
     </div>
   );

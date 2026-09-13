@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import ThemeToggle from "../components/ThemeToggle";
 
 import { useLogin } from "../hooks/mutations";
 import { loginSchema } from "../schemas/authSchema";
@@ -41,39 +42,44 @@ function LoginPage() {
     });
   };
   return (
-    <div className={styles.container}>
-      <div className={styles.containerBox}>
-        <div className={styles.header}>
-          <img src={logo} alt="logo" />
-          <h2>فرم ورود</h2>
+    <>
+      <div className={styles.container}>
+        <div className={styles.theme}>
+          <ThemeToggle />
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <input
-            type="text"
-            placeholder="نام کاربری"
-            {...register("username")}
-          />
-          {errors.username && <p>{errors.username.message}</p>}
-          <div className={styles.password}>
-            <input
-              type={isVisible ? "text" : "password"}
-              placeholder="رمز عبور"
-              {...register("password")}
-            />
-            <div onClick={() => setIsVisible(!isVisible)}>
-              {isVisible ? <FaRegEye /> : <FaRegEyeSlash />}
-            </div>
-            {errors.password && <p>{errors.password.message}</p>}
+        <div className={styles.containerBox}>
+          <div className={styles.header}>
+            <img src={logo} alt="logo" />
+            <h2>فرم ورود</h2>
           </div>
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+            <input
+              type="text"
+              placeholder="نام کاربری"
+              {...register("username")}
+            />
+            {errors.username && <p>{errors.username.message}</p>}
+            <div className={styles.password}>
+              <input
+                type={isVisible ? "text" : "password"}
+                placeholder="رمز عبور"
+                {...register("password")}
+              />
+              <div onClick={() => setIsVisible(!isVisible)}>
+                {isVisible ? <FaRegEye /> : <FaRegEyeSlash />}
+              </div>
+              {errors.password && <p>{errors.password.message}</p>}
+            </div>
 
-          {error && <p>Invalid username or password.</p>}
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "درحال ورود..." : "ورود"}
-          </button>
-          <Link to="/register">ایحاد حساب کاربری!</Link>
-        </form>
+            {error && <p>Invalid username or password.</p>}
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "درحال ورود..." : "ورود"}
+            </button>
+            <Link to="/register">ایحاد حساب کاربری!</Link>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
