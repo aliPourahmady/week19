@@ -28,7 +28,7 @@ week19/
 │   │   │                   # Add/Update/Delete modals, ThemeToggle, route guards
 │   │   ├── pages/          # LoginPage, RegisterPage, AdminPage, PageNotFound
 │   │   ├── router/Router.jsx
-│   │   ├── context/        # AuthContext, ThemeContext
+│   │   ├── context/        #ThemeContext
 │   │   ├── hooks/          # React Query queries/mutations, useDebounce
 │   │   ├── service/        # axios instance (api.js), cookie helpers
 │   │   ├── schemas/        # Yup validation (authSchema, productsSchema)
