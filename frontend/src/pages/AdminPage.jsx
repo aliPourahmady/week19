@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import SearchBox from "../components/SearchBox";
 import ThemeToggle from "../components/ThemeToggle";
+import avatar from "../assets/Felix-Vogel-4.svg";
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -22,10 +23,13 @@ function AdminPage() {
         <header>
           <SearchBox />
           <div className={styles.user}>
+            <span className={styles.line}></span>
+            <img src={avatar} alt="avatar" className={styles.avatar} />
             <div style={styles.accont}>
               <h2>میلاد عظمی</h2>
               <p>مدیر</p>
             </div>
+            <span className={styles.line}></span>
             <ThemeToggle />
             <TbLogout2 className={styles.logout} onClick={logoutHandler} />
           </div>

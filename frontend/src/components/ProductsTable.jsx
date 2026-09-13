@@ -44,7 +44,6 @@ function ProductsTable() {
     setSearchParams(updatedParams);
   };
 
-  console.log(data);
   const totalCount = data?.totalProducts || 0;
 
   if (error)
@@ -88,8 +87,6 @@ function ProductsTable() {
         </div>
       </div>
       <div className={styles.filtersContainer}>
-
-
         <PriceRange
           initialMin={filters.minPrice}
           initialMax={filters.maxPrice}

@@ -1,9 +1,14 @@
 import { useTheme } from "../context/themeContext";
+import { MdSunny } from "react-icons/md";
+import { IoMoon } from "react-icons/io5";
+import styles from "./ThemeToggle.module.css";
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
   return (
-    <button onClick={toggleTheme}>{theme === "light" ? "🌙" : "☀️"}</button>
+    <button onClick={toggleTheme} className={styles.toggle}>
+      {theme === "light" ? <IoMoon /> : <MdSunny />}
+    </button>
   );
 }
 

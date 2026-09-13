@@ -20,6 +20,8 @@
 .headerBtn {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .headerBtn button {
   font-family: "vazirmatn";
@@ -53,16 +55,21 @@
   display: flex;
   width: 100%;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 .tableContainer {
   border-radius: 30px;
   border: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .table {
   background-color: var(--input);
   table-layout: auto;
   border-collapse: collapse;
   width: 100%;
+  min-width: 600px;
   border-radius: 30px;
   border: none;
   overflow: hidden;
@@ -91,4 +98,13 @@
 .table tbody tr {
   height: 80px;
   border-bottom: 1px solid var(--input);
+}
+
+@media (max-width: 500px) {
+  .headerBtn {
+    flex-direction: column;
+  }
+  .headerBtn button {
+    width: 100%;
+  }
 }
